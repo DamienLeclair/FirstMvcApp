@@ -1,9 +1,4 @@
 bin
-
 obj
-
 *.suo
-
-*.sdf
-
-*.DotSettings.user
+*.user
