@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Web.Mvc;
     using Ninject;
     using SportsStore.Domain.Abstract;
@@ -30,6 +31,15 @@
         void AddBindings()
         {
             kernel.Bind<IProductsRepository>().To<EFProductRepository>();
+
+            var emailSettings = new EmailSettings
+            {
+                WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
+            };
+
+            kernel.Bind<IOrderProcessor>()
+                .To<EmailOrderProcessor>()
+                .WithConstructorArgument("emailSettings", emailSettings);
         }
     }
 }
