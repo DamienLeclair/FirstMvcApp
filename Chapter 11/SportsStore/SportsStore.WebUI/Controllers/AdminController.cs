@@ -1,5 +1,6 @@
 ﻿namespace SportsStore.WebUI.Controllers
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
     using SportsStore.Domain.Abstract;
@@ -38,6 +39,22 @@
             }
             
             return View(product);
+        }
+
+        public ViewResult Create()
+        {
+            return View("Edit", new Product());
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int productId)
+        {
+            var deletedProduct = repository.DeleteProduct(productId);
+            if (deletedProduct != null)
+            {
+                TempData["message"] = string.Format("{0} was deleted", deletedProduct.Name);
+            }
+            return RedirectToAction("Index");
         }
     }
 }
