@@ -1,11 +1,11 @@
 ﻿namespace SportsStore.WebUI.Controllers
 {
-    using System;
     using System.Linq;
     using System.Web.Mvc;
     using SportsStore.Domain.Abstract;
     using SportsStore.Domain.Entities;
 
+    [Authorize]
     public class AdminController : Controller
     {
         readonly IProductsRepository repository;

@@ -7,6 +7,8 @@
     using Ninject;
     using SportsStore.Domain.Abstract;
     using SportsStore.Domain.Concrete;
+    using SportsStore.WebUI.Infrastructure.Abstract;
+    using SportsStore.WebUI.Infrastructure.Concrete;
 
     public class NinjectDependencyResolver : IDependencyResolver
     {
@@ -40,6 +42,8 @@
             kernel.Bind<IOrderProcessor>()
                 .To<EmailOrderProcessor>()
                 .WithConstructorArgument("emailSettings", emailSettings);
+
+            kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
     }
 }
