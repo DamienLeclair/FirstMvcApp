@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Mvc.Routing.Constraints;
 using System.Web.Routing;
 
 namespace UrlsAndRoutes
 {
+    using UrlsAndRoutes.Infrastructure;
+
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
@@ -42,16 +40,33 @@ namespace UrlsAndRoutes
             //    new[] { "UrlsAndRoutes.AdditionnalControllers" });
             //route.DataTokens["UseNamespceFallBack"] = false;
 
-            routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
+            //routes.MapRoute(
+            //    "ChromeRoute",
+            //    "{*catchall}",
+            //    new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //    new UserAgentConstraint("Chrome"),
+            //    new[] { "UrlsAndRoutes.Controllers" });
+
+            //routes.MapRoute(
+            //    "MyRoute",
+            //    "{controller}/{action}/{id}/{*catchall}",
+            //    new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //    new
+            //    {
+            //        controller = "^H.*",
+            //        action = "^Index$|^About$",
+            //        httpmethod = new HttpMethodConstraint("GET"),
+            //        id =
+            //            new CompoundRouteConstraint(
+            //                new IRouteConstraint[] { new AlphaRouteConstraint(), new MinLengthRouteConstraint(6) })
+            //    },
+            //    new[] { "UrlsAndRoutes.Controllers" });
+
+            routes.MapMvcAttributeRoutes();
+            routes.MapRoute("MyRoute", "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                new 
-                { 
-                    controller = "^H.*", 
-                    action = "^Index$|^About$", 
-                    httpmethod = new HttpMethodConstraint("GET"),
-                    id = new CompoundRouteConstraint(new IRouteConstraint[] { new AlphaRouteConstraint(), new MinLengthRouteConstraint(6)})
-                },
                 new[] { "UrlsAndRoutes.Controllers" });
+
         }
     }
 }
