@@ -9,6 +9,8 @@ namespace UrlsAndRoutes
         {
             routes.MapMvcAttributeRoutes();
 
+            //routes.MapRoute("NewRoute", "App/Do{action}", new { controller = "Home" });
+
             routes.MapRoute(
                 "MyRoute",
                 "{controller}/{action}/{id}",

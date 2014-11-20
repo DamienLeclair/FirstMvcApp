@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace UrlsAndRoutes.Controllers
 {
@@ -22,7 +18,6 @@ namespace UrlsAndRoutes.Controllers
         {
             ViewBag.Controller = "Home";
             ViewBag.Action = "Index";
-            //ViewBag.CustomVariable = RouteData.Values["id"];
             ViewBag.CustomVariable = id ?? "<no value>";
 
             return View("ActionName");
