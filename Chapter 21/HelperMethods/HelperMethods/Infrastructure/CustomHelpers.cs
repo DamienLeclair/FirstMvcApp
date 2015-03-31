@@ -17,9 +17,15 @@
             return new MvcHtmlString(tag.ToString());
         }
 
+        //public static MvcHtmlString DisplayMessage(this HtmlHelper html, string message)
+        //{
+        //    var result = string.Format("This is the message : <p>{0}</p>", message);
+        //    return new MvcHtmlString(result);
+        //}
+
         public static MvcHtmlString DisplayMessage(this HtmlHelper html, string message)
         {
-            var result = string.Format("This is the message : <p>{0}</p>", message);
+            var result = string.Format("This is the message : <p>{0}</p>", html.Encode(message));
             return new MvcHtmlString(result);
         }
     }

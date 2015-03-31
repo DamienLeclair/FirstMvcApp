@@ -2,6 +2,8 @@
 
 namespace HelperMethods.Controllers
 {
+    using HelperMethods.Models;
+
     public class HomeController : Controller
     {
         // GET: Home
@@ -13,6 +15,17 @@ namespace HelperMethods.Controllers
             const string message = "This is an HTML element : <input>";
 
             return View((object)message);
+        }
+
+        public ActionResult CreatePerson()
+        {
+            return View(new Person());
+        }
+
+        [HttpPost]
+        public ActionResult CreatePerson(Person person)
+        {
+            return View(person);
         }
     }
 }
