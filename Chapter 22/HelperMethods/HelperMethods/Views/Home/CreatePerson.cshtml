@@ -1,43 +1,43 @@
 ﻿@using HelperMethods.Models
-@model HelperMethods.Models.Person
+
+@model Person
 
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "CreatePerson";
+    Html.EnableClientValidation(false);
 }
 
-<h2>CreatePerson</h2>
+@*<h2>CreatePerson</h2>*@
+<h2>@Html.LabelForModel()</h2>
 
-@*<form action="Home/CreatePerson" method="POST">*@
-@*@{ Html.BeginForm();}*@
-@*@using (Html.BeginForm())
-{*@
-@*@using (Html.BeginForm("CreatePerson", "Home", new{ id= "MyIdValue"}, FormMethod.Post, new {@class = "personClass", data_formType="person"}))*@
 @using (Html.BeginRouteForm("FormRoute", new {}, FormMethod.Post, new { @class = "personClass", data_formType = "person" }))
 {
-    <div class="dataElem">
+    @*<div class="dataElem">
         <label>PersonId</label>
-        @*<input name="personId" value="@Model.PersonId"/>*@
-        @*@Html.TextBox("personId", Model.PersonId)*@
-        @Html.TextBoxFor(m => m.PersonId)
+        @Html.EditorFor(m => m.PersonId)
     </div>
     <div class="dataElem">
         <label>First Name</label>
-        @*<input name="firstName" value="@Model.FirstName" />*@
-        @*@Html.TextBox("firstName", Model.FirstName)*@
-        @Html.TextBoxFor(m => m.FirstName)
+        @Html.EditorFor(m => m.FirstName)
     </div>
     <div class="dataElem">
         <label>Last Name</label>
-        @*<input name="lastName" value="@Model.LastName" />*@
-        @*@Html.TextBox("lastName", Model.LastName)*@
-        @Html.TextBoxFor(m => m.LastName)
+        @Html.EditorFor(m => m.LastName)
     </div>
     <div class="dataElem">
         <label>Role</label>
-        @Html.DropDownListFor(m => m.Role, new SelectList(Enum.GetNames(typeof(Role))))
+        @Html.EditorFor(m => m.Role)
+    </div>
+    <div class="dataElem">
+        <label>BirthDate</label>
+        @Html.EditorFor(m => m.BirthDate)
+    </div>*@
+    <div class="column">
+        @Html.EditorForModel()
+    </div>
+    <div class="column">
+        @Html.EditorFor(m => m.HomeAddress)
     </div>
     <input type="submit" value="Submit"/>
 }
-@*@{Html.EndForm();}*@
-@*</form>*@
