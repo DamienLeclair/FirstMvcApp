@@ -1,0 +1,87 @@
+﻿@using HelperMethods.Models
+@*@model IEnumerable<Person>*@
+@model string
+
+@{
+    ViewBag.Title = "GetPeople";
+    Layout = "/Views/Shared/_Layout.cshtml";
+    var ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "tableBody",
+        Url = Url.Action("GetPeopleData"),
+        LoadingElementId = "loading",
+        LoadingElementDuration = 1000,
+        Confirm = "Do you wish to request new data ?"
+    };
+}
+
+<script type="text/javascript">
+    function OnBegin() {
+        alert("this is the OnBeginCallback");
+    }
+    function OnSuccess(data) {
+        alert("this is the OnSuccessCallback: " + data);
+    }
+    function OnFailure(request, error) {
+        alert("this is the OnFailureCallback: " + error);
+    }
+    function OnComplete(request, status) {
+        alert("this is the OnCompleteCallback: " + status);
+    }
+</script>
+
+<h2>Get People</h2>
+
+<div id="loading" class="load" style="display: none">
+    <p>Loading Data...</p>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>First</th>
+            <th>Last</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        @*@foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.FirstName</td>
+                    <td>@p.LastName</td>
+                    <td>@p.Role</td>
+                </tr>
+            }*@
+        @Html.Action("GetPeopleData", new { selectedRole = Model })
+    </tbody>
+</table>
+
+@*@using (Html.BeginForm())*@
+@*@using (Ajax.BeginForm("GetPeopleData", ajaxOpts))*@
+@using (Ajax.BeginForm(ajaxOpts))
+{
+    <div>
+        @Html.DropDownList("selectedRole", new SelectList(new[] { "All" }.Concat(Enum.GetNames(typeof(Role)))))
+        <button type="submit">Submit</button>
+    </div>
+    <div>
+        @foreach (var role in Enum.GetNames(typeof(Role)))
+        {
+            <div class="ajaxLink">
+                @Ajax.ActionLink(role, 
+                                "GetPeople", 
+                                new { selectedRole = role }, 
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "tableBody", 
+                                    Url = Url.Action("GetPeopleData", new { selectedRole = role }),
+                                    OnBegin = "OnBegin",
+                                    OnFailure = "OnFailure",
+                                    OnSuccess = "OnSuccess",
+                                    OnComplete = "OnComplete"
+                                })
+            </div>
+        }
+    </div>
+}
