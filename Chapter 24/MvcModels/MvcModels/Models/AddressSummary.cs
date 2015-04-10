@@ -2,7 +2,7 @@
 {
     using System.Web.Mvc;
 
-    [Bind(Include = "City")]
+    //[Bind(Include = "City")]
     public class AddressSummary
     {
         public string City { get; set; }

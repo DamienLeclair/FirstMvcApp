@@ -89,6 +89,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\CountryValueProvider.cs" />
+    <Compile Include="Infrastructure\CustomValueProviderFactory.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\AddressSummary.cs" />
     <Compile Include="Models\Person.cs" />
@@ -102,6 +104,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\CreatePerson.cshtml" />
     <Content Include="Views\Home\DisplaySummary.cshtml" />
+    <Content Include="Views\Home\Names.cshtml" />
+    <Content Include="Views\Home\Address.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

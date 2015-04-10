@@ -38,5 +38,29 @@ namespace MvcModels.Controllers
         {
             return View(summary);
         }
+
+        public ActionResult Names(IEnumerable<string> names)
+        {
+            return View(names ?? Enumerable.Empty<string>());
+        }
+
+        public ActionResult Address(IEnumerable<AddressSummary> address)
+        {
+            return View(address ?? Enumerable.Empty<AddressSummary>());
+        }
+
+        //public ActionResult Address(FormCollection formData)
+        //{
+        //    var addresses = new List<AddressSummary>();
+        //    if (TryUpdateModel(addresses, formData))
+        //    {
+        //        // Procced as normal
+        //    }
+        //    else
+        //    {
+        //        // Provide feedbac to user
+        //    }
+        //    return View(addresses);
+        //}
     }
 }
