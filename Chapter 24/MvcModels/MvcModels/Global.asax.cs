@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace MvcModels
 {
     using MvcModels.Infrastructure;
+    using MvcModels.Models;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -16,7 +13,8 @@ namespace MvcModels
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            ValueProviderFactories.Factories.Insert(0, new CustomValueProviderFactory());
+            //ValueProviderFactories.Factories.Insert(0, new CustomValueProviderFactory());
+            //ModelBinders.Binders.Add(typeof(AddressSummary), new AddressSummaryBinder());
         }
     }
 }
