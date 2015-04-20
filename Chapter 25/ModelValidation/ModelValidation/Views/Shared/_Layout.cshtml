@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style type="text/css">
+        .field-validation-error{color: #F00;}
+        .validation-summary-errors {color: #F00; font-weight: bold;}
+        .input-validation-error {border: 2px solid #F00; background-color: #Fee;}
+        input[type="checkbox"].input-validation-error{outline: 2px solid #F00;}
+    </style>
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
